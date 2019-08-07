@@ -1,26 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './css/App.css';
+import SignIn from './components/SignIn.js';
+import firebaseConfig from './config.js';
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends React.Component {
+
+  constructor(props){
+    super(props);
+    const firebaseApp = firebase.initializeApp(firebaseConfig);
+    this.state = {
+      developers: []
+    }
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <SignIn/>
+      </div>
+    );
+  }
 }
 
 export default App;
