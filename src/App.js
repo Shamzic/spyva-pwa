@@ -1,6 +1,7 @@
 import React from 'react';
 import './css/App.css';
 import SignIn from './components/SignIn.js';
+import DatePicker from './components/DatePicker.js';
 import firebaseConfig from './config.js';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
@@ -19,6 +20,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
+        <DatePicker/>
         <SignIn/>
       </div>
     );

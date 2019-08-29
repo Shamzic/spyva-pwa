@@ -52,7 +52,7 @@ class SignIn extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="sign-in">
         <section className="container section scrollspy" id="signin">
           <h3> Inscription </h3>
           <form>
