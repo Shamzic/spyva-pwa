@@ -5,8 +5,15 @@ import 'firebase/auth';
 
 class SignIn extends React.Component {
 
+
+
   constructor(props) {
+
+
     super(props);
+
+
+    console.log("Sign In Component constructor")
     this.state = {
       mail: '',
       password: '',
@@ -21,7 +28,7 @@ class SignIn extends React.Component {
   }
 
   handleSubmit(event) {
-    alert('Inscription effectuée ' + this.state.value);
+    console.log('Inscription effectuée ' + this.state.value);
     event.preventDefault();
     this.signInWithEmail();
   }
@@ -39,9 +46,9 @@ class SignIn extends React.Component {
       var errorMessage = error.message;
       // [START_EXCLUDE]
       if (errorCode === 'auth/weak-password') {
-        alert('The password is too weak.');
+        console.log('The password is too weak.');
       } else {
-        alert(errorMessage);
+        console.log(errorMessage);
       }
       console.log(error);
       // [END_EXCLUDE]
