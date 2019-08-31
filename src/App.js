@@ -1,12 +1,11 @@
 import React from 'react';
 import './css/App.css';
-import SignIn from './components/SignIn.js';
-import DatePicker from './components/DatePicker.js';
 import firebaseConfig from './config.js';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
-import { BrowserRouter } from 'react-router-dom'
-
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import NavBar from './components/layout/NavBar'
+import Dashboard from './components/dashboard/Dashboard'
 
 class App extends React.Component {
 
@@ -22,8 +21,10 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <div className="App">
-          <h1>Spywa</h1>
-          <SignIn/>
+          <NavBar/>
+          <Switch>
+            <Route path="/" component={ Dashboard }/>
+          </Switch>
         </div>
       </BrowserRouter>
     );
