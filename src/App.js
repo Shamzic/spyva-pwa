@@ -5,6 +5,7 @@ import DatePicker from './components/DatePicker.js';
 import firebaseConfig from './config.js';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
+import { BrowserRouter } from 'react-router-dom'
 
 
 class App extends React.Component {
@@ -19,9 +20,12 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
-        <SignIn/>
-      </div>
+      <BrowserRouter>
+        <div className="App">
+          <h1>Spywa</h1>
+          <SignIn/>
+        </div>
+      </BrowserRouter>
     );
   }
 }
