@@ -6,6 +6,10 @@ import 'firebase/auth';
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import NavBar from './components/layout/NavBar'
 import Dashboard from './components/dashboard/Dashboard'
+import DatePicker from './components/DatePicker'
+import ProjectDetails from './components/projects/ProjectDetails'
+import SignIn from './components/auth/SignIn'
+import SignUp from './components/auth/SignUp'
 
 class App extends React.Component {
 
@@ -23,7 +27,11 @@ class App extends React.Component {
         <div className="App">
           <NavBar/>
           <Switch>
-            <Route path="/" component={ Dashboard }/>
+            <Route path="/picktest" component={ DatePicker }/>
+            <Route path="/project/:id" component={ ProjectDetails }/>
+            <Route exact path="/signin" component={ SignIn }/>
+            <Route exact path="/signUp" component={ SignUp }/>
+            <Route exact path="/" component={ Dashboard }/>
           </Switch>
         </div>
       </BrowserRouter>
