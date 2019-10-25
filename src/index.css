@@ -6,9 +6,9 @@ body {
   margin : 0;
   padding: 0;
   font-family: sans-serif;
-  background: url(/img/bike_chase-wallpaper-1920x1200.jpg) no-repeat;
+  /* background: url(/img/bike_chase-wallpaper-1920x1200.jpg) no-repeat; */
   background-size: 100%;
-  background-color: #200B1E;
+  background-color: #3a3b4f;
   min-height: 100%;
 }
 form {
