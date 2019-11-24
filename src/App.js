@@ -6,7 +6,7 @@ import 'firebase/auth';
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import NavBar from './components/layout/NavBar'
 import Dashboard from './components/dashboard/Dashboard'
-import DatePicker from './components/DatePicker'
+import DatePicker from './components/agenda/DatePicker'
 import ProjectDetails from './components/projects/ProjectDetails'
 import SignIn from './components/auth/SignIn'
 import SignUp from './components/auth/SignUp'

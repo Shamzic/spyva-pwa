@@ -1,14 +1,11 @@
 import React from 'react';
-import '../css/DatePicker.css';
-
+import '../../css/DatePicker.css';
 import TimeSlot from './TimeSlot.js'
 
 class DatePicker extends React.Component {
 
-
   constructor() {
     super();
-
     var options = {year: "numeric", month: "numeric", day: "numeric"};
 
     this.state = {
@@ -63,29 +60,33 @@ class DatePicker extends React.Component {
 
     return (
       <div className="date-picker">
+
         <div className="date-header">
-          <i className="fas fa-chevron-left chevron" onClick={this.leftDay}></i>
-          <p>{this.state.date.getDate()+"/"+(this.state.date.getMonth()+1)+"/"+this.state.date.getFullYear()}</p>
-          <i className="fas fa-chevron-right chevron" onClick={this.rightDay}></i>
+          <div className="row">
+            <div className="col s3 offset-s1 chevron">
+              <i className="fas fa-chevron-left chevron" onClick={this.leftDay}></i>
+            </div>
+            <div className="col s4 date-string">{this.state.date.getDate()+"/"+(this.state.date.getMonth()+1)+"/"+this.state.date.getFullYear()}</div>
+            <div className="col s3 chevron">
+              <i className="fas fa-chevron-right " onClick={this.rightDay}></i>
+            </div>
+          </div>
         </div>
         <div className="date-row">
-
-          <div className="dayChecker">{nextDay_m1}</div>
-          <div className="dayChecker">{nextDay_m2}</div>
-          <div className="dayChecker">{nextDay_m3}</div>
-
-
-          <div className="dayChecker">{this.state.date.getDate()}</div>
-
-
-            <div className="dayChecker">{nextDay_p1}</div>
-            <div className="dayChecker">{nextDay_p2}</div>
-            <div className="dayChecker">{nextDay_p3}</div>
+          <div className="row">
+            <div className="dayChecker col s2 offset-s1">{nextDay_m2}</div>
+            <div className="dayChecker col s2">{nextDay_m3}</div>
+            <div className="dayChecker col s2">{this.state.date.getDate()}</div>
+            <div className="dayChecker col s2">{nextDay_p1}</div>
+            <div className="dayChecker col s2">{nextDay_p2}</div>
+          </div>
         </div>
+
         <div className="time-slot-column">
-          <TimeSlot></TimeSlot>
-          <TimeSlot></TimeSlot>
-          <TimeSlot></TimeSlot>
+          <TimeSlot className="time-slot-component"></TimeSlot>
+          <TimeSlot className="time-slot-component"></TimeSlot>
+          <TimeSlot className="time-slot-component"></TimeSlot>
+          <TimeSlot className="time-slot-component"></TimeSlot>
         </div>
       </div>
     );

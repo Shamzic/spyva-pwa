@@ -1,0 +1,16 @@
+.project-details .card-content {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.project-details .card-title {
+  width: 90%;
+}
+
+.project-details .delete-button {
+  width: 10%;
+}
+
+.project-details .project-content {
+
+}

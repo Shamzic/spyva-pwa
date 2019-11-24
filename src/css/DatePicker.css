@@ -1,40 +1,28 @@
 .date-picker {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  margin-bottom: 5%;
-}
-.date-header {
-  display: flex;
-}
-.chevron {
-  margin-top: 19px;
-}
-.fa-chevron-right {
-  margin-left: 10px;
-}
-.fa-chevron-left {
-  margin-right: 10px;
-}
-.date-row{
-  display: flex;
-}
-.dayChecker {
-   flex: 1 1 auto;
-  border: 1px dotted black;
-  margin: 1px;
-  width: 50px;
-  height: 50px;
-  background-color: red;
-}
-
-.time-slot-column {
-  height: 150px;
-  overflow: scroll;
-}
-
-.time-slot-card {
   margin-top: 5%;
-  width: 350px;
+}
+
+.chevron,
+.date-string {
+  margin: 1px;
+  text-align: center;
+  background-color: #DAA520;
+}
+
+.row{
+  text-align: center;
+}
+
+.dayChecker {
+  margin: 1px;
+  text-align: center;
+  background-color:		#87CEEB ; 
+}
+
+.test {
+  background-color: cyan;
+}
+
+.time-slot-component {
+  margin-top: 50px;
 }
