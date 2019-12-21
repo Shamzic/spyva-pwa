@@ -1,7 +1,7 @@
 import React from 'react';
 import './css/App.css';
 // import firebaseConfig from './config.js';
-import * as firebase from 'firebase/app';
+// import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import NavBar from './components/layout/NavBar'
@@ -12,30 +12,39 @@ import SignIn from './components/auth/SignIn'
 import SignUp from './components/auth/SignUp'
 import CreateProject from './components/projects/CreateProject'
 
+import Test from './components/Test'
+
 class App extends React.Component {
 
   constructor(props){
     super(props);
     // const firebaseApp = firebase.initializeApp(firebaseConfig);
     this.state = {
-      developers: []
+      developers: [],
+      test: true,
     }
   }
 
+
+
   render() {
+
     return (
       <BrowserRouter>
-        <div className="App">
-          <NavBar/>
-          <Switch>
-            <Route path="/picktest" component={ DatePicker }/>
-            <Route path="/project/:id" component={ ProjectDetails }/>
-            <Route exact path="/signin" component={ SignIn }/>
-            <Route exact path="/signUp" component={ SignUp }/>
-            <Route exact path="/createProject" component={ CreateProject }/>
+      <div className="App">
+        { this.state.test ? <Test min={0} sec={5}/> :
+          <React.Fragment>
+            <NavBar/>
+            <Switch>
+              <Route path="/picktest" component={ DatePicker }/>
+              <Route path="/project/:id" component={ ProjectDetails }/>
+              <Route exact path="/signin" component={ SignIn }/>
+              <Route exact path="/signUp" component={ SignUp }/>
+              <Route exact path="/createProject" component={ CreateProject }/>
 
-            <Route exact path="/" component={ Dashboard }/>
-          </Switch>
+              <Route exact path="/" component={ Dashboard }/>
+            </Switch>
+        </React.Fragment> }
         </div>
       </BrowserRouter>
     );

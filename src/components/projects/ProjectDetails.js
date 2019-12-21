@@ -30,7 +30,7 @@ const ProjectDetails = (props) => {
           <div className="card-content">
             <span className="card-title"> {project.title}</span>
             <div className="delete-button">
-              <a className="btn-floating red" onClick={deleteProject}><i className="material-icons">close</i></a>
+              <a href="/#" className="btn-floating red" onClick={deleteProject}><i className="material-icons">close</i></a>
             </div>
             <p className="project-content">{project.content}</p>
           </div>
@@ -62,13 +62,11 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-
 const mapDispatchToProps = (dispatch) => {
   return {
     deleteProject: (project, projectID) => dispatch(deleteProject(project, projectID))
   }
 }
-
 
 export default compose(connect(mapStateToProps, mapDispatchToProps),
   firestoreConnect([{ collection: 'projects'}]))(ProjectDetails)

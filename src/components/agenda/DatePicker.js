@@ -1,5 +1,8 @@
 import React from 'react';
 import '../../css/DatePicker.css';
+import { connect } from 'react-redux'
+import { firestoreConnect } from 'react-redux-firebase'
+import { compose} from 'redux'
 import TimeSlot from './TimeSlot.js'
 
 class DatePicker extends React.Component {
@@ -63,11 +66,11 @@ class DatePicker extends React.Component {
 
         <div className="date-header">
           <div className="row">
-            <div className="col s3 offset-s1 chevron">
+            <div className="col s2 offset-s1 chevron">
               <i className="fas fa-chevron-left chevron" onClick={this.leftDay}></i>
             </div>
-            <div className="col s4 date-string">{this.state.date.getDate()+"/"+(this.state.date.getMonth()+1)+"/"+this.state.date.getFullYear()}</div>
-            <div className="col s3 chevron">
+            <div className="col s6 date-string">{this.state.date.getDate()+"/"+(this.state.date.getMonth()+1)+"/"+this.state.date.getFullYear()}</div>
+            <div className="col s2 chevron">
               <i className="fas fa-chevron-right " onClick={this.rightDay}></i>
             </div>
           </div>
@@ -83,15 +86,31 @@ class DatePicker extends React.Component {
         </div>
 
         <div className="time-slot-column">
-          <TimeSlot className="time-slot-component"></TimeSlot>
-          <TimeSlot className="time-slot-component"></TimeSlot>
-          <TimeSlot className="time-slot-component"></TimeSlot>
-          <TimeSlot className="time-slot-component"></TimeSlot>
+          <TimeSlot className="time-slot-component" hour={'11:30-12:30'}></TimeSlot>
+          <TimeSlot className="time-slot-component" hour={'12:30-13:30'}></TimeSlot>
+          <TimeSlot className="time-slot-component" hour={'13:30-14:30'}></TimeSlot>
+          <TimeSlot className="time-slot-component" hour={'18:00-19:00'}></TimeSlot>
+          <TimeSlot className="time-slot-component" hour={'19:00-20:00'}></TimeSlot>
+          <TimeSlot className="time-slot-component" hour={'20:00-21:00'}></TimeSlot>
+          <TimeSlot className="time-slot-component" hour={'21:00-22:00'}></TimeSlot>
+          <TimeSlot className="time-slot-component" hour={'22:00-23:00'}></TimeSlot>
         </div>
       </div>
     );
   }
 }
 
+const mapStateToProps = (state) => {
+  console.log(state);
+  return {
+    shift: state.firestore.ordered.shift,
+  }
+}
 
-export default DatePicker;
+
+export default compose(
+  connect(mapStateToProps),
+  firestoreConnect([
+    { collection: 'shift'}
+  ])
+)(DatePicker);
