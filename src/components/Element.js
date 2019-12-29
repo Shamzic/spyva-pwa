@@ -21,20 +21,20 @@ class Element extends React.Component {
     this.setState({style: style});
   }
 
-  removeElem() {
-    this.setState({removed: true})
+  handlerRemoveElem() {
+    this.props.app.removeElem(this)
   }
 
   render() {
     return (
-      this.state.removed ? null : 
+      this.state.removed ? null :
       <li style={this.state.style}
           onMouseOver={this.mouseOver.bind(this)}
           onMouseOut={this.mouseOut.bind(this)}>
         <span>
           {this.props.txt}
         </span>
-        <button onClick={this.removeElem.bind(this)}
+        <button onClick={this.handlerRemoveElem.bind(this)}
                 style={{margin: '10px', fontSize: '10px'}}>
           Supprimer
         </button>

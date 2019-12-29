@@ -9,10 +9,14 @@ class ListeElement extends React.Component {
   }
 
   render() {
-    return this.props.elems.map((elem, index) => {
-      var { ukey, txt } = elem;
-      return <Element key={ukey} ukey={ukey} txt={txt}/>;
-    })
+    return (
+      <ul> {
+      this.props.elems.map((elem, index) => {
+        var { ukey, txt } = elem;
+        return <Element key={ukey} ukey={ukey} txt={txt} app={this.props.app}/>;
+      })
+      } </ul>
+    )
   }
 }
 

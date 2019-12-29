@@ -26,11 +26,23 @@ class Test extends React.Component {
   }
 
 
+    removeElem(objectElem) {
+      console.log(objectElem);
+      var elems = this.state.elems;
+      elems = elems.filter(function(elem){
+        if(objectElem.ukey != elem.ukey) {
+          return true;
+        }
+      });
+      this.setState({elems: elems});
+    }
+
+
   render() {
     return (
       <div>
         <button onClick={this.insertElem.bind(this)}>Insérer</button>
-        <ListeElement elems={this.state.elems}></ListeElement>
+        <ListeElement elems={this.state.elems} app={this}></ListeElement>
       </div>
     )
   }
