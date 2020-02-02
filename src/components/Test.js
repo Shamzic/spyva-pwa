@@ -1,3 +1,5 @@
+
+
 import React from 'react'
 import ListeElement from './ListeElement'
 import TextAreaWithButton from './TextAreaWithButton'
@@ -5,9 +7,10 @@ import Select from './Select'
 import RadioGroup from './RadioGroup'
 import RadioGroupWithButton from './RadioGroupWithButton'
 import CheckBoxGroupWithButton from './CheckBoxGroupWithButton'
-
+import Elem from './Elem'
 
 class Test extends React.Component {
+
 
   constructor(props) {
     super(props);
@@ -35,16 +38,7 @@ class Test extends React.Component {
   removeElem(objectElem) {
     console.log(objectElem);
     var elems = this.state.elems;
-    {/*elems = elems.filter(function(elem){
-      if(objectElem.ukey != elem.ukey) {
-        return true;
-      }
-    });*/}
-
     elems = elems.filter(elem => elem.ukey != objectElem.ukey);
-
-
-
     this.setState({elems: elems});
   }
 
@@ -54,7 +48,7 @@ class Test extends React.Component {
     var elems = this.state.elems;
     elems = elems.map(function(elem) {
       var {txt, ukey} = elem;
-      if(objectElem.ukey == ukey) {
+      if(objectElem.ukey === ukey) {
         elem.txt = newValue;
       }
       return elem;
@@ -83,9 +77,6 @@ class Test extends React.Component {
     console.log("resize ", fontSize);
   }
 
-  componentDidMount() {
-    window.addEventListener("resize", this.handlerResize.bind(this));
-  }
 
   componentWillUnmout() {
     window.removeEventListener("resize", this.handlerResize);
@@ -115,6 +106,15 @@ class Test extends React.Component {
     console.log(checkboxes);
   }
 
+  componentDidMount() {
+    window.addEventListener("resize", this.handlerResize.bind(this));
+    console.log(this.refs);
+    const $ = window.$;
+    $(this.refs.ref3).css("font-size", "20px").css("color", "red");
+    this.refs.ref3.setState({elem: "Nouvel Element"});
+  }
+
+
   render() {
 
     var radios = [
@@ -127,7 +127,7 @@ class Test extends React.Component {
     var checkboxes = [
       {value: 1, text: "toto", checked: false},
       {value: 2, text: "tata", checked: true},
-      {value: 3, text: "tutu", checked: false},      
+      {value: 3, text: "tutu", checked: false},
     ];
 
 
@@ -137,11 +137,25 @@ class Test extends React.Component {
         {/*<ListeElement elems={this.state.elems} app={this} style={this.state.style}></ListeElement>*/}
         {/*}<TextAreaWithButton cols={40} rows={10} value="Tapez votre texte ici"  focus={false} onValid={this.validTextArea}/>*/}
         {/*<Select options={["element 1", "element 2", "element 3"]} onSelect={this.onSelectElement} default="2">*/}
-        {/*}<RadioGroupWithButton radios={radios} name="group1" onValid={this.validRadio}/>*/}
+        <RadioGroupWithButton radios={radios} name="group1" onValid={this.validRadio}/>
         <CheckBoxGroupWithButton
           checkboxes={checkboxes}
           onValid={this.validCheckboxes}/>
         {/*</Select>*/}
+        <ul ref="ref1">
+          <li>Element1</li>
+          <li>Element2</li>
+          <li>Element3</li>
+          <li>Element4</li>
+          <li>Element5</li>
+        </ul>
+        <ul ref="ref2">
+          <Elem ref="ref3" elem="TEST">Element11</Elem>
+          <li>Element12</li>
+          <li>Element13</li>
+          <li>Element14</li>
+          <li>Element15</li>
+        </ul>
       </div>
     )
   }
