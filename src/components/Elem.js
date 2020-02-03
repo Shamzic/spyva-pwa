@@ -11,9 +11,7 @@ class Elem extends Component {
 
     render() {
         return (
-            <div>
-                {this.state.elem}      
-            </div>
+            <li> TOTO {this.state.elem.text}</li>
         );
     }
 }

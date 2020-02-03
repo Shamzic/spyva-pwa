@@ -107,11 +107,28 @@ class Test extends React.Component {
   }
 
   componentDidMount() {
-    window.addEventListener("resize", this.handlerResize.bind(this));
-    console.log(this.refs);
+
     const $ = window.$;
-    $(this.refs.ref3).css("font-size", "20px").css("color", "red");
-    this.refs.ref3.setState({elem: "Nouvel Element"});
+   window.addEventListener("resize", this.handlerResize.bind(this));
+    console.log(this.refs);
+
+    fetch("action.php", {
+      headers : { 
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+       }
+      })
+    .then(function(response) {
+      console.log(response);
+      return response.json();
+    })
+    .then(
+      (result) => {
+      console.log(result);
+      this.setState({elems: result});
+    },(error) => {
+      console.log(error);
+    })
   }
 
 
@@ -142,7 +159,7 @@ class Test extends React.Component {
           checkboxes={checkboxes}
           onValid={this.validCheckboxes}/>
         {/*</Select>*/}
-        <ul ref="ref1">
+{/*          <ul ref="ref1">
           <li>Element1</li>
           <li>Element2</li>
           <li>Element3</li>
@@ -155,7 +172,15 @@ class Test extends React.Component {
           <li>Element13</li>
           <li>Element14</li>
           <li>Element15</li>
-        </ul>
+        </ul> */}
+
+          <ul>
+            {
+              this.state.elems.map(function(elem, index) {
+                return <Elem key={index} elem={elem}></Elem>
+              })
+            }
+          </ul>
       </div>
     )
   }
