@@ -8,9 +8,17 @@ import RadioGroup from './RadioGroup'
 import RadioGroupWithButton from './RadioGroupWithButton'
 import CheckBoxGroupWithButton from './CheckBoxGroupWithButton'
 import Elem from './Elem'
+import { createStore } from "redux"
+import reducer from "../store/reducers/reducers"
+import ButtonAdd from './ButtonAdd'
+import ConnectedListeElements from './ConnectedListeElements'
+import ButtonRevert from './ButtonRevert'
+
+import { connect} from 'react-redux'
+
+import * as ACTIONS from '../store/actions/actions'
 
 class Test extends React.Component {
-
 
   constructor(props) {
     super(props);
@@ -109,81 +117,40 @@ class Test extends React.Component {
   componentDidMount() {
 
     const $ = window.$;
-   window.addEventListener("resize", this.handlerResize.bind(this));
+    window.addEventListener("resize", this.handlerResize.bind(this));
     console.log(this.refs);
-
-    fetch("action.php", {
-      headers : { 
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-       }
-      })
-    .then(function(response) {
-      console.log(response);
-      return response.json();
-    })
-    .then(
-      (result) => {
-      console.log(result);
-      this.setState({elems: result});
-    },(error) => {
-      console.log(error);
-    })
   }
-
 
   render() {
 
-    var radios = [
-      {value: 1, text: "radio1"},
-      {value: 2, text: "radio2"},
-      {value: 3, text: "radio3", checked:  true},
-      {value: 4, text: "radio4"}
+    var elems = [
+      "Element 1",
+      "Element 2",
+      "Element 3",
+      "Element 4",
     ];
-
-    var checkboxes = [
-      {value: 1, text: "toto", checked: false},
-      {value: 2, text: "tata", checked: true},
-      {value: 3, text: "tutu", checked: false},
-    ];
-
-
+    
+    elems.forEach((txt) => {
+      this.props.add_elem(txt);
+    });
+    
     return (
       <div className="radio">
-        {/*<button onClick={this.insertElem.bind(this)}>Insérer</button>*/}
-        {/*<ListeElement elems={this.state.elems} app={this} style={this.state.style}></ListeElement>*/}
-        {/*}<TextAreaWithButton cols={40} rows={10} value="Tapez votre texte ici"  focus={false} onValid={this.validTextArea}/>*/}
-        {/*<Select options={["element 1", "element 2", "element 3"]} onSelect={this.onSelectElement} default="2">*/}
-        <RadioGroupWithButton radios={radios} name="group1" onValid={this.validRadio}/>
-        <CheckBoxGroupWithButton
-          checkboxes={checkboxes}
-          onValid={this.validCheckboxes}/>
-        {/*</Select>*/}
-{/*          <ul ref="ref1">
-          <li>Element1</li>
-          <li>Element2</li>
-          <li>Element3</li>
-          <li>Element4</li>
-          <li>Element5</li>
-        </ul>
-        <ul ref="ref2">
-          <Elem ref="ref3" elem="TEST">Element11</Elem>
-          <li>Element12</li>
-          <li>Element13</li>
-          <li>Element14</li>
-          <li>Element15</li>
-        </ul> */}
-
-          <ul>
-            {
-              this.state.elems.map(function(elem, index) {
-                return <Elem key={index} elem={elem}></Elem>
-              })
-            }
-          </ul>
+          <ButtonAdd text="Ajouter"></ButtonAdd> &nbsp;&nbsp;
+          <ButtonRevert text="Inverser"></ButtonRevert>
+          <ListeElement elems={elems} />
       </div>
     )
   }
 }
 
-export default Test;
+function mapDispatchToProps(dispatch) {
+  return {
+    add_elem : function(txt) {
+      var action = ACTIONS.add_elem(txt);
+      dispatch(action);
+    }
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Test);

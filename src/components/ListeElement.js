@@ -1,29 +1,29 @@
 import React from 'react'
-import Element from './Element'
+import Elem from './Elem'
+import {connect} from 'react-redux'
 
+const ListeElement= function(props) {
 
-class ListeElement extends React.Component {
-
-  constructor(props) {
-    super(props);
+  console.log(props)
+  var { elems } = props;
+  if (elems == null) {
+    // elems = [{txt: "1"}];
   }
+  return (
+    <ul> {
+      elems.map(function(elem) {
+        return <li key={elem.ukey}> 
+            <Elem ukey={elem.ukey} text={elem.txt}/>
+          </li>
+    })
+    } </ul>
+  )
+}
 
-  render() {
-    return (
-      <ul> {
-      this.props.elems.map((elem, index) => {
-        var { ukey, txt } = elem;
-        return <Element
-                  key={ukey}
-                  ukey={ukey}
-                  txt={txt}
-                  app={this.props.app}
-                  style={this.props.style}
-                />;
-      })
-      } </ul>
-    )
+function mapStateToProps(state) {
+  return {
+    elems: state.reducers.elems
   }
 }
 
-export default ListeElement;
+export default connect(mapStateToProps)(ListeElement);

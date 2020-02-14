@@ -20,11 +20,25 @@ const store = createStore(rootReducer,
 );
 
 store.firebaseAuthIsReady.then(() => {
-  ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
+  ReactDOM.render(
+  <Provider store={store}>
+    <App/>
+  </Provider>, document.getElementById('root'));
+})
+
+store.subscribe(function() {
+  console.log(store.getState());
 })
 
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
+
+/* 
+store.dispatch(ACTIONS.add_elem("Element 1"));
+
+store.dispatch(ACTIONS.add_elem("Element 2"));
+
+store.dispatch(ACTIONS.add_elem("Element 3"));
+
+store.dispatch(ACTIONS.remove_elem(1)); */
+
 serviceWorker.unregister();
