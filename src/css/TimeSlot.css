@@ -5,8 +5,23 @@
 .registered-list-title,
 .registered-list-btn {
   margin-top: 5%;
+  font-size: 12px;
 }
 
 .registered-list-btn {
   text-align: left;
+}
+
+.btn.btn-floating {
+  margin: 1%;
+}
+
+.time-slot-card {
+  background: repeating-linear-gradient(
+    45deg,
+    #606dbc,
+    #606dbc 10px,
+    #465298 10px,
+    #465298 20px
+  )
 }

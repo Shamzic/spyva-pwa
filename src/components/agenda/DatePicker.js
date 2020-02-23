@@ -7,19 +7,24 @@ import TimeSlot from './TimeSlot.js'
 
 class DatePicker extends React.Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+
+    console.log(props)
+
     var options = {year: "numeric", month: "numeric", day: "numeric"};
 
     this.state = {
       isCalendarOpen: false,
       selectedDate: null,
       dateString: new Date().toLocaleString("FR", options),
-      date: new Date()
+      date: new Date(),
+      shifts: props.shifts
     };
 
     this.leftDay = this.leftDay.bind(this);
     this.rightDay = this.rightDay.bind(this);
+
   }
 
   leftDay() {
@@ -76,6 +81,7 @@ class DatePicker extends React.Component {
           </div>
         </div>
         <div className="date-row">
+
           <div className="row">
             <div className="dayChecker col s2 offset-s1">{nextDay_m2}</div>
             <div className="dayChecker col s2">{nextDay_m3}</div>
@@ -85,15 +91,17 @@ class DatePicker extends React.Component {
           </div>
         </div>
 
+        <div className="row">
+        {this.props.shifts && this.props.shifts.map(shift => {
+        return (
+          <h1>TEST</h1>
+        )
+      })}
+        </div>
+
         <div className="time-slot-column">
           <TimeSlot className="time-slot-component" hour={'11:30-12:30'}></TimeSlot>
           <TimeSlot className="time-slot-component" hour={'12:30-13:30'}></TimeSlot>
-          <TimeSlot className="time-slot-component" hour={'13:30-14:30'}></TimeSlot>
-          <TimeSlot className="time-slot-component" hour={'18:00-19:00'}></TimeSlot>
-          <TimeSlot className="time-slot-component" hour={'19:00-20:00'}></TimeSlot>
-          <TimeSlot className="time-slot-component" hour={'20:00-21:00'}></TimeSlot>
-          <TimeSlot className="time-slot-component" hour={'21:00-22:00'}></TimeSlot>
-          <TimeSlot className="time-slot-component" hour={'22:00-23:00'}></TimeSlot>
         </div>
       </div>
     );
@@ -101,9 +109,9 @@ class DatePicker extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
+  console.log(state.firestore.ordered.shifts);
   return {
-    shift: state.firestore.ordered.shift,
+    shifts: state.firestore.ordered.shifts,
   }
 }
 
@@ -111,6 +119,6 @@ const mapStateToProps = (state) => {
 export default compose(
   connect(mapStateToProps),
   firestoreConnect([
-    { collection: 'shift'}
+    { collection: 'shifts', orderBy: ['date_start', 'desc']},
   ])
 )(DatePicker);

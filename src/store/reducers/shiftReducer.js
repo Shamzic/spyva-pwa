@@ -1,5 +1,5 @@
 const initState = {
-  shift: [
+  shifts: [
     {id: '1', date: 'help me find a shift', userId: 'jxOqm5TnZYW2vpYLngrSI3GEeLC2'},
     {id: '2', date: 'help me find a bike', userId: 'jxOqm5TnZYW2vpYLngrSI3GEeLC2'},
     {id: '3', date: 'help me find a command', userId: 'jxOqm5TnZYW2vpYLngrSI3GEeLC2'},
