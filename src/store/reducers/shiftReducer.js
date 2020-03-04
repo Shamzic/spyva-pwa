@@ -18,6 +18,9 @@ const shiftReducer = (state = initState, action) => {
       case 'DELETE_SHIFT':
         console.log("delete shift : ", action.shift)
         return state;
+      case 'UPDATE_SHIFT':
+          console.log("updated shift : ", action.shift)
+          return state;
       case 'DELETE_SHIFT_ERROR':
         console.log("delete shift error", action.err);
         return state;

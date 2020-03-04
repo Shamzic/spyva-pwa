@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose} from 'redux'
 import TimeSlot from './TimeSlot.js'
+import CreateShift from '../shifts/CreateShift'
 
 const DatePicker2 = function(props) {
 
@@ -17,8 +18,9 @@ const DatePicker2 = function(props) {
           {shifts && shifts.map(shift => {
             return (
                 <TimeSlot className="time-slot-component" shift={shift}></TimeSlot>
-            )
+              )
           })}
+          <CreateShift></CreateShift>
           </div>
         </div>
       </div>

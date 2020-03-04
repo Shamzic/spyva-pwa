@@ -5,8 +5,8 @@ import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-
 import '../../css/TimeSlot.css';
+import { updateShift } from '../../store/actions/shiftActions'
 
 
 
@@ -98,8 +98,14 @@ const mapStateToProps = (state) => {
   }
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateShift: () => dispatch(updateShift())
+  }
+}
+
 export default compose(
-  connect(mapStateToProps),
+  connect(mapStateToProps, mapDispatchToProps),
   firestoreConnect([
     { collection: 'shifts', orderBy: ['date_start', 'desc']},
     { collection: 'users'},
